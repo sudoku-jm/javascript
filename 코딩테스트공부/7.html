@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+      <script>
+          /* 
+           자동차 10부제
+
+           자동차 번호 일의자리 =  날짜 일의자리 => 운행금지
+
+           <예>
+           자동차 번호 일의 자리      날짜
+           7                          7일,17일,27일 운행금지
+           0                          10일,20일,30일 운행금지
+
+
+           7대 자동차 번호 끝 두자리수 = 두자리 숫자.
+           위반하는 자동차 대수 출력.
+          */
+
+
+            
+            function solution(cars,date){
+              let answer = 0;
+           
+
+              //1. cars 의 일의자리 숫자를 가져와
+              //2. 주어진 날짜 date
+              // cars 의 0번째숫자 == date  비교 
+              // 일치시 위반차량 대수 cnt +1 
+              
+              /* 방법1 */
+              // let cnt=0;
+              // for( c of cars){
+              //   //console.log(parseInt(c.toString().slice(-1))); 
+              //   // 문자열로 치환
+              //   //문자열 끝자리 구하기
+              //   //다시 숫자로 돌리기
+              //   c = parseInt(c.toString().slice(-1));
+
+              //   if(c === date) cnt += 1;
+              // }
+              //  return  answer = cnt;
+
+              /* 방법2 */
+              for (let x of cars){
+                if(x % 10 === date) answer++;//나머지값으로해결
+              }
+              return answer;
+
+             
+
+            }
+            let date = 0;
+            let cars = [12, 20, 54, 30, 87, 91, 30];
+            console.log(solution(cars,date));
+        </script>
+    </body>
+</html>

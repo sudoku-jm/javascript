@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+      <script>
+          /* 
+          내장함수로 최솟값, 최대값 구하기
+          */
+            function solution(arr){
+                let answer = Math.min(...arr);
+                //let answer = Math.max(...arr);//최대값
+                console.log(...arr); //5 3 7 11 2 15 17
+                // ...arr 배열을 펼쳐서 넘긴다.
+
+               return answer;
+              }
+            
+              let arr = [5,3,7,11,2,15,17];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
