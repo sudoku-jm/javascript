@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+
+            /* 
+          N개의 문자열이 입력되면 중복된 문자열은 제거하고 출력하는 프로그램을 작성하세요.
+          출력하는 문자열은 원래의 입력순서를 유지합니다.
+            */
+
+            function solution(str){
+                let answer;
+
+                // console.log(str.indexOf("time"));
+                answer = str.filter(function(v,i){ //true 리턴한 값을 배열로 가져옴.
+                    // console.log(v,i);
+                    if(str.indexOf(v) === i) {
+                        //해당위치와 인덱스 동일시 = 처음 나왔을때만 반환
+                        return true;
+                    }
+                });
+               
+
+
+                return answer;
+            }
+
+
+            let str = ['good','time','good','time','student'];
+
+
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

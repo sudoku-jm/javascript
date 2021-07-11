@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+
+            /* 
+            한 개의 문자열을 입력받아 해당 문자열에 알파벳 대문자가 몇 개 있는지 알아내는 프로그램을 작성하세요.
+            */
+
+            // function solution(str){
+            //     let answer = 0;
+
+            //     let cnt = 0;
+            //     let idx = 0;
+            //     let s;
+            //    // console.log(str.length);
+            //    while(idx < str.length){
+            //         s=str.charAt(idx);
+            //         if(s == s.toUpperCase()){
+            //             cnt++;
+            //           //  console.log(cnt);
+            //         }
+            //         idx ++;
+            //    }
+
+            //     return answer = cnt;
+            // }
+
+
+
+            //풀이1
+            //function solution(str){
+            //     let answer = 0;
+
+            //     for( s of str){
+            //         if( s === s.toUpperCase()) answer++;
+            //     }
+
+            //     //toUpperCase는 대문자를 바꿔준다. 문자자체를 변형하지 않음.
+            //     // s=s.toUpperCase()로 해야 s에 저장.
+
+            //     return answer;
+            // }
+
+
+            //풀이2 아스키넘버로 확인
+            function solution(str){
+                let answer = 0;
+
+                for( s of str){
+                   let num = s.charCodeAt();
+                   //console.log(num);
+                   if(num>=65 && num<=90) answer++;
+                }
+
+                //charCodeAt 해당문자의 아스키코드를 볼 수 있다.
+                /*
+                    대문자 : 아스키65~90
+                    소문자 : 아스키97~122
+                */
+
+                return answer;
+            }
+
+
+            let str = 'KoreaTimeGood';
+
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

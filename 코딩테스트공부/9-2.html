@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+
+            /* 
+            대문자로 이루어진 영어단어가 입력되면 단어에 포함된 ‘A'를 모두 ’#‘으로 바꾸어 출력하는 프로그램을 작성하세요.
+            */
+
+            function solution(str){
+                let answer = str;
+                //str = str.replace(/A/ , '#'); //A를 찾아서 #으로 변경하라. 첫번째 A만 바뀌어있음. 전체 A는 아님
+                
+                answer = str.replace(/A/g, '#');  //g를 붙이면 글로벌. 전체를 바꾸게 함.
+               // console.log(str);
+                // 주소값 참조가 아니라서 answer에 돌려줘야함.
+                
+                return answer;
+            }
+
+
+            let str = 'BANANA';
+
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

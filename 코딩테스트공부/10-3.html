@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+
+            /* 
+           대문자와 소문자가 같이 존재하는 문자열을 입력받아 대문자로 모두 통일하여 문자열을 출력 하는 프로그램을 작성하세요.
+            */
+
+            function solution(str){
+                let answer  = '';
+
+                // for( s of str){
+                //     answer += s.toUpperCase();
+                   
+                // }
+
+                //아스키
+                for(let s of str){
+                    let n = s.charCodeAt();
+                    if(n>=97 && n<=122) answer+=String.fromCharCode(n-32);
+                    else answer+=s;
+                }
+
+
+                //answer = str.toUpperCase();
+
+                return answer;
+            }
+
+
+            let str = 'ItisTimeToStudy';
+
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
