@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+         /* 회문문자열 */
+
+         /* 
+        앞에서 읽을 때나 뒤에서 읽을 때나 같은 문자열을 회문 문자열이라고 합니다.
+        문자열이 입력되면 해당 문자열이 회문 문자열이면 "YES", 회문 문자열이 아니면 “NO"를 출력
+        하는 프로그램을 작성하세요.
+        단 회문을 검사할 때 대소문자를 구분하지 않습니다.
+          */
+
+        function solution(str){
+
+
+
+          // let answer = '';
+          // 문자 길이 반을 자른다
+          // let len = str.length - 1;
+          // str = str.toUpperCase();
+          // console.log(len);
+          
+          // 반을 자른 앞 또는 뒤로 글자 하나씩 체크
+          // for( let i = 0; i<Math.floor(str.length / 2); i++){
+            
+            //   if(str.charAt(i) !== str.charAt(len)){
+              //     answer = 'No';
+              //     break;
+              //   }
+              //   else{
+                //     answer = 'Yes';
+                //   }
+                //   len--;
+                // }
+                
+                
+            //풀이1
+            // let answer = 'Yes';
+            // str = str.toLowerCase();
+            // let len = str.length;
+            // for( let i = 0; i< Math.floor(len/2); i++){
+            //   if(str[i] !== str[len-i-1]) return 'No';
+            // }
+
+
+            //풀이2
+            let answer = 'Yes';
+            str = str.toLowerCase();
+            console.log(str.split('').reverse().join('')); // 배열화 + 반대로 리버스
+            if(str !== str.split('').reverse().join('')) return anser = 'No'
+
+
+
+          
+
+
+
+
+            return answer;
+        }
+
+        let str = 'gooG';
+
+        console.log(solution(str));
+    </script>
+</body>
+</html>
