@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 배열이나 함수가 아닌것들 . 특정모양을 가지면 객체 리터럴이라고 부른다. */
+
+        // const name = '조현영';
+        // const year = 1994;
+        // const month = 8;
+        // const date = 12;
+        // const gnder = 'M';
+
+        //중괄호로 쓴 애들 = 객체 리터럴
+        /* 
+            배열과 객체 리터럴의 차이
+            배열은 이름이 없이 값만 있다.
+            객체 리터럴은 속성의 이름과 값이 있다는 것.
+            속성(이름) : 값
+        */
+        const zerocho = {
+            name : '조현영', 
+            year : 1994,
+            month : 8,
+            date : 12,
+            gender : 'M'
+        };
+
+        //속성내부 접근
+        console.log(zerocho.name);      //조현영
+        console.log(zerocho['name']);   //조현영 
+        console.log(zerocho[name]);     
+        //undefinded zerocho['조현영']과 같음 따옴표 주의!
+        // 없는 속성에 접근하므로 undefinded가 뜬다.
+
+        
+        
+        const 객체 = {
+            속성이름 : '속성값',
+            속성이름2 : '속성값2'
+        }
+        
+        
+        //속성에 따옴표 ' ' 를 붙여줘야하는 경우
+        const obj = {
+            bd : 'hello',
+            '2ca' : 'hello1',
+            'c a' : 'hello2',
+            'c-a' : 'hello3'
+            
+        }
+        // console.log(obj.2ca); //오류   
+        console.log(obj['2ca']); //따옴표를 쓴 애들은 반드시 대괄호 
+        console.log(obj['c a']); //따옴표를 쓴 애들은 반드시 대괄호 
+
+
+
+        //객체 속성 제거하기
+        // console.log(zerocho);
+        // console.log(zerocho.gender);
+        delete zerocho.gender;
+        console.log(zerocho.gender);    //undefinded 속성제거후 없어짐
+        console.log(zerocho);
+
+
+        //객체 메서드 : 객제 속성값으로 함수를 넣었을 때
+        const debug = {
+            log : function(value){
+                console.log(value);
+            }
+        }
+
+        debug.log('hello,Mehod');
+
+        
+    </script>
+</body>
+</html>

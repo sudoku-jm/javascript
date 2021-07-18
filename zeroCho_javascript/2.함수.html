@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 함수 이름짓기 */
+        /* 함수 선언한다 : declare */
+       function a(){}               //함수 선언문
+       const b = function(){};      //함수 표현식
+       const c = () => {};          //화살표 함수
+
+
+       /* 함수 호출 
+        호출 : call
+       */
+    //   a();
+    //   b();
+    //   c();
+
+
+        //익명함수
+        //다른곳에서는 못쓴다. 여러번 쓸거면 이름 붙여줘야한다.
+      //function(){} // 또는
+      //() => {}
+
+
+
+      /* 반환하다. return */
+        function fn(){
+            return '반환값';
+            //함수 종료하면서 반환.
+        }
+        fn();
+
+        function d(){
+            if(true){
+                return;
+            }
+            console.log('true일 때 여긴 실행 안하고 종료');
+        }
+
+
+        function e(){
+            if(false){
+                return;
+            }
+            console.log('false 일 때 여긴 실행후');
+            return undefined;//return을 써주지 않으면 이 return undefinded은 항상 숨어 있다는 것을 알아두기.
+        }
+
+
+        
+
+        function f(){
+            return [1,5]; //값 여러개 리턴시 배열로 리턴.
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* parameter와 argument (매개변수와 인수)*/
+        /* 
+            함수 선언시 parameter , 
+            함수 호출시 argument
+        */
+        function a(parameter){
+            console.log(parameter);
+        }
+        a('argument');
+
+
+        function b(w,x,y,z){ // z로 받는 파라미터가 없으면 
+            console.log(w,x,y,z); //z는 undefined 로 출력
+            console.log(arguments); // function 기본기능.  
+            //Arguments(3) ['hi','parameter','argument'] 배열로 리턴
+        }
+
+        b('hi','parameter','argument');
+
+    
+        const f = (x,y,z) => {
+            return x*y*z;
+        }
+
+        console.log(f(2,3,4));
+
+    </script>
+</body>
+</html>
