@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6-3-ex</title>
+</head>
+<body>
+  <script>
+    /* 배열 기반의 다중 할당 */
+
+    //let [a, b] = [1, 2]     //한 번에 여러 개의 변수에 값을 할당.
+    //console.log(a,b)      //1,2 출력
+    
+   // [a, b] = [b, a]
+   // console.log(a,b)
+
+   let arrayA = [1,2,3,4,5]
+   const [a,b,c] = arrayA
+   console.log(a,b,c)     //앞에 있는 1,2,3 출력
+
+   /* 객체 기반의 다중 할당 */
+   /* 
+    {속성 이름, 속성 이름} = 객체
+    {식별자=속성 이름, 식별자=속성 이름} = 객체
+   */
+  </script>
+</body>
+</html>

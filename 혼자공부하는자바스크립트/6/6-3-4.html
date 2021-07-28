@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6-3-4</title>
+</head>
+<body>
+  <script>
+   
+   /* 배열 전개 연산자 */
+  /* 
+    배열과 객체는 할당할 때 "얕은 복사"가 이루어진다.
+  */
+
+  const 물건_200301 = ['우유','식빵']
+  const 물건_200302 = 물건_200301
+
+  물건_200302.push('고구마')
+  물건_200302.push('토마토')
+
+  //같은 값이 나온다.
+  console.log(물건_200301)      
+  console.log(물건_200302)
+
+  //다른 이름이 붙을 뿐인 것 = 얕은복사(참조복사)
+
+</script>
+</body>
+</html>

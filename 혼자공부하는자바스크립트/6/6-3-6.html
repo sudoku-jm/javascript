@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6-3-6</title>
+</head>
+<body>
+  <script>
+   /* 
+   전개 연산자를 사용한 배열 요소 추가
+   [...배열, 자료, 자료, 자료]
+   */
+
+   const 물건1 = ['우유','식빵']
+   const 물건2 = ['고구마',...물건1,'토마토']
+   
+   console.log(물건1)     //우유, 식빵
+   console.log(물건2)     //고구마, 우유, 식빵, 토마토
+</script>
+</body>
+</html>

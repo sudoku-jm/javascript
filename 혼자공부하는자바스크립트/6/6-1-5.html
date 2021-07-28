@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6-1-5</title>
+</head>
+<body>
+  <script>
+    /* 
+      객체의 메소드
+      익명 함수 사용   :  this   -->  해당객체
+      화살표 함수 사용 :  this   -->  window 객체, etc
+
+      화살표 함수에서의 this는 해당객체를 가리키지 않기 때문에,
+      일반적으로 화살표 함수는 각체의 메소드로 사용하지 않는 편.
+    */
+
+    const test = {
+      a : function(){
+        console.log(this)         //Object
+      },
+      b : () => {
+        console.log(this)         //Window
+      }
+    }
+
+    test.a()
+    test.b()
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6-2-1</title>
+</head>
+<body>
+  <script>
+   /* 
+    prototype
+    : 모든 객체와 기본 자료형에 속성과 메소드를 추가하는 키워드
+
+    자료형.prototype.속성명 = 값;
+    자료형.prototype.메소드명 = function(){};
+   */
+
+  // console.log(valueOf)
+   //Number객체에 power 메소드 추가
+   Number.prototype.power = function( n = 2 ){
+
+     return this.valueOf() ** n
+   }
+
+   /* valueOf 예
+    var arr = new Array ("valueOf 예제1", "valueOf 예제2", "valueOf 예제3");
+    document.write("arr.valueOf() : " + arr.valueOf() + "<br>");
+
+
+    결과
+     arr.valueOf() : valueOf 예제1,valueOf 예제2,valueOf 예제3
+   */
+   
+
+   // Number객체의 power() 메소드 사용
+   const a = 12
+   console.log('a.power() : ' , a.power())    //144
+   console.log('a.power(3) : ' , a.power(3))  //1728
+   console.log('a.power(4) : ' , a.power(4))  //20736
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6-3-5</title>
+</head>
+<body>
+  <script>
+   
+   /* 배열 전개 연산자 */
+  /* 
+    "깊은 복사"
+    복사한 두 배열이 완전히 독립적으로 작동. = 클론(clone)을 만드는 것.
+
+    전개 연산자를 사용함
+    [...배열]
+
+    두 배열이 독립적으로 작동한다.
+  */
+
+    const 물건1 = ['우유','식빵']
+    const 물건2 = [...물건1]
+
+    물건2.push('고구마')
+    물건2.push('토마토')
+
+    
+    console.log(물건1)    //우유, 식빵
+    console.log(물건2)    //우유, 식빵, 고구마, 토마토
+</script>
+</body>
+</html>
