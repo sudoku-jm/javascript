@@ -1,0 +1,94 @@
+DOM (Document Object Model)
+
+: HTML,XML 문서의 프로그래밍 interface
+  - 프로그래밍 언어가 Dom구조에 접근할 수 있는 방법
+  - 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕는다
+  - 동일한 문서 표현, 저장, 조작하는 방법 제공
+  - 자바스크립트같은 언어 이용해 DOM수정
+: DOM은 프로그래밍 언어와 독립적으로 디자인
+
+
+---
+DOMContentLoaded 
+: 브라우저가 문서 객체를 모두 읽고 나서 실행되는 이벤트
+: DOM컨텐츠가 불러와진 상태
+
+document.addEventListener('DOMContentLoaded' () => { ... })
+
+
+addEventListener('이벤트', 콜백함수)
+:해당 이벤트가 발생 했을 때, 콜백 함수를 실행하는 메소드
+
+
+(구버전)
+document.onload = function(){ ... }
+document.addEventListener('load',function(){ ... })
+
+
+---
+문서 객체 가져오기
+
+1. 기본 요소 가져오기
+document.head
+document.body
+document.title
+
+2. 메소드로 요소 가져오기
+document.querySelector(선택자)
+document.querySelectorAll(선택자)
+
+3. CSS선택자
+
+---
+글자 조작하기
+
+문서객체.textContent = '속성값'
+: 입력한 문자열을 그대로 할당.
+
+문서객체.innerHTML = '속성값
+: 인력한 문자열을 HTML 형식으로 할당
+
+---
+속성 조작하기
+
+문서객체.setAttribute(속성 이름, 값)
+: 특정 속성에 값을 지정
+
+문서객체.getAttribute(속성 이름)
+: 특정 속성의 값을 추출
+---
+스타일 조작하기
+
+CSS 속성명 : Kebab 표기법    =>  text-align
+JS  속성명 : Camel 표기법    =>  textAlign
+
+문서 객체.style.JS속성명
+문서 객체.style.['JS속성명']
+문서 객체.style.['CSS속성명']
+---
+문서 객체 조작하기
+
+1. 생성하기
+document.createElement(문서객체이름)
+
+2. 배치하기
+부모객체.appendChild(자식객체)
+
+3. 이동하기
+다른부모객체.appendCHild(자식객체)
+
+4. 제거하기
+부모객체.removeChild(자식객체)
+문서객체.parentNode.removeChild(문서객체)
+---
+이벤트 설정하기
+
+1. 이벤트 리스너(이벤트 핸들러) 
+  : 이벤트가 발생했을 때 실행할 함수
+
+2. 이벤트 설정
+  : 문서객체.addEventListener("이벤트이름",콜백 함수)
+  : 표준 이벤트
+  
+3. 이벤트 제거 
+  : 문서객체.removeEventListener("이벤트이름",이벤트 리스너)

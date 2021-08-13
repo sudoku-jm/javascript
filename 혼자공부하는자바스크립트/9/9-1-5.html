@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-1-5</title>
+  <script>
+    /* 
+      - 객체를 생성하는 함수
+      : 함수 내부에서 객체를 생성하고 반환하는 함수
+      : 장점 
+            - 중복될 수 있는 코드를 최소화.
+            - 객체 생성에 대한 유지봇가 쉬움.
+      : 단점 
+            - 객체 별로 메소드를 생성하기 때문에 무거운 자료형이 여러 번 생성.
+            - 유사한 객체를 생성하는 함수를 만들게 되면, 코드의 중복이 늘어남.
+    */
+
+    //객체를 생성하는 함수
+    function createStudent(이름,국어,영어,수학,과학){
+      return{
+        //속성 선언
+        이름 : 이름,
+        국어 : 국어,
+        영어 : 영어,
+        수학 : 수학,
+        과학 : 과학,
+        //메소드 선언
+        getSum(){
+          return this.국어 + this.영어 + this.수학 + this.과학
+        },
+        getAverage(){
+          return this.getSum() / 4
+        },
+        toString(){
+          return `${this.이름}\t${this.getSum()}점\t${this.getAverage()}점\n`
+        }
+      }
+    }
+    //단점 : 무거운 자료형이 여러 번 생성된다.
+
+    //객체 생성
+    const students = []
+    students.push(createStudent('구름', 87, 98, 88, 90))
+    students.push(createStudent('별이', 92, 98, 96, 88))
+    students.push(createStudent('겨울', 76, 96, 94, 86))
+    students.push(createStudent('바다', 98, 52, 98, 92))
+
+    console.log(students);
+    /* 
+
+    createStudent('구름', 87, 98, 88, 90) 
+    함수 동작하면서 객체를 생성
+
+    0: {이름: "구름", 국어: 87, 영어: 98, 수학: 88, 과학: 90, …}
+    1: {이름: "별이", 국어: 92, 영어: 98, 수학: 96, 과학: 88, …}
+    2: {이름: "겨울", 국어: 76, 영어: 96, 수학: 94, 과학: 86, …}
+    3: {이름: "바다", 국어: 98, 영어: 52, 수학: 98, 과학: 92, …}
+    
+
+     각 배열의 내부에 메소드가 추가된걸 확인 가능
+     0:
+      >getAverage: ƒ getAverage()
+      >getSum: ƒ getSum()
+      >toString: ƒ toString()
+      과학: 90
+      국어: 87
+      수학: 88
+      영어: 98
+      이름: "구름"
+    */
+
+
+    //출력
+    let output = '이름\t총점\t평균\n'
+    for(const s of students){
+      output += s.toString()
+    }
+
+    console.log(output)
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

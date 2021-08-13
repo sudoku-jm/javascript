@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-1-4</title>
+  <script>
+    /* 
+    
+    <객체의 기능을 메소드로 추가하기>
+
+    [객체A] - 기능A() , 기능B()
+    [객체B] - 기능A() , 기능B()
+    기능A()가 어떤 객체에 대한 기능인지 혼동 => 함수를 객체 내부의 메소드로 추가하기
+
+    const 객체A = {}
+    const 객체B = {}
+
+    객체A.기능A = function() {
+      //객체A에 대한 기능A
+    }
+    객체B.기능A = function() {
+      //객체B에 대한 기능A
+    }
+
+    */
+  // 객체를 선언합니다.
+  const students = []
+  students.push({ 이름: '구름', 국어: 87, 영어: 98, 수학: 88, 과학: 90})
+  students.push({ 이름: '별이', 국어: 92, 영어: 98, 수학: 96, 과학: 88})
+  students.push({ 이름: '겨울', 국어: 76, 영어: 96, 수학: 94, 과학: 86})
+  students.push({ 이름: '바다', 국어: 98, 영어: 52, 수학: 98, 과학: 92})
+
+  // student 배열 내부의 객체 모두에 메소드 추가
+  for(const student of students){
+    student.getSum = function(){
+      return this.국어 + this.영어 + this.수학 + this.과학
+    }
+
+    student.getAverage = function(){
+      return this.getSum() / 4
+    }
+  }
+
+  // 출력
+  let output = '이름\t총점\t평균\n'
+  for(const s of students){
+    output += `${s.이름}\t${s.getSum()}점\t${s.getAverage()}점\n`
+  }
+  
+  console.log(students)
+  /* 
+  각 배열의 내부에 메소드가 추가된걸 확인 가능
+ 0: >getAverage: ƒ ()
+    >getSum: ƒ ()
+     과학: 90
+     국어: 87
+     수학: 88
+     영어: 98
+     이름: "구름"
+  */
+
+  console.log(output)
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

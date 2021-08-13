@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>7-2-11</title>
+  <script>
+   /* 오른쪽 마우스 클릭 이벤트 막기 */
+    document.addEventListener('DOMContentLoaded',() => {
+      const imgs = document.querySelectorAll('img')
+
+      imgs.forEach((img) => {
+        img.addEventListener('contextmenu',(event) => {
+          event.preventDefault()//브라우저 기본 이벤트 막음"우클릭 막기"
+        })
+      })
+
+    })
+  </script>
+</head>
+<body>
+  <img src="http://placekitten.com/300/300" alt="">
+</body>
+</html>

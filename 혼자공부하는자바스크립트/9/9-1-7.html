@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-1-7</title>
+  <script>
+    /* 
+      생성자 
+      - 객체를 생성하고 초기화!
+      - 객체가 생성될때 호출되는 것!
+      - 클래스 기반으로 인스턴스가 생성될 때 호출되는 메소드
+      - "constructor"라는 이름으로 정의
+      - 역할 : 속성 추가 등 객체 초기화 처리함
+        
+      class 클래스이름{
+        //생성자 정의
+        constructor(){
+          //객체 초기화 코드
+        }
+      }
+
+    */
+
+
+    //클래스 생성
+    class Student{
+      //생성자 정의
+      constructor(이름, 국어, 영어, 수학, 과학){ 
+        this.이름 = 이름,
+        this.국어 = 국어,
+        this.영어 = 영어,
+        this.수학 = 수학,
+        this.과학 = 과학
+      }
+    }
+
+    // 객체 선언
+    const students = []
+    students.push(new Student('구름',87,98,88,90))
+    students.push(new Student('별이',92,98,96,88))
+    students.push(new Student('겨울',76,96,94,86))
+    students.push(new Student('바다',98,52,98,92))
+
+    console.log(students);
+    /* 
+      결과
+      (4) [Student, Student, Student, Student]
+      0: Student {이름: "구름", 국어: 87, 영어: 98, 수학: 88, 과학: 90}
+      1: Student {이름: "별이", 국어: 92, 영어: 98, 수학: 96, 과학: 88}
+      2: Student {이름: "겨울", 국어: 76, 영어: 96, 수학: 94, 과학: 86}
+      3: Student {이름: "바다", 국어: 98, 영어: 52, 수학: 98, 과학: 92}
+
+      student객체 생성과 동시에 constructor(생성자) 호출해 초기화한다.
+    */
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

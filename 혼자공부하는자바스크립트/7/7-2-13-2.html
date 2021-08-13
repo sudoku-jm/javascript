@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7-2-13-2</title>
+</head>
+<body>
+  <h1>할 일 목록</h1>
+  <input type="text" id="todo">
+  <button id="add-button">추가</button>
+  <div id="todo-list"></div>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', () =>{
+    //문서 객체 선택
+    const input = document.querySelector('#todo')
+    const todoList = document.querySelector('#todo-list')
+    const addButton = document.querySelector('#add-button')
+    let keyCount = 0
+
+    //추가하기
+    const addTodo = () => {
+
+      //입력 값이 빈 값. value 값의 공백을 제거 한 문자가 빈 값일 때.
+      if(input.value.trim() === '') {
+        alert('할 일을 입력해주세요')
+        return
+      }
+
+      
+      //추가 시 문서 객체 동적 생성
+      const item = document.createElement('div')
+      const checkbox = document.createElement('input')
+      const text = document.createElement('span')
+      const button = document.createElement('button')
+      const key = keyCount
+      keyCount += 1
+
+      //동적 객체 append
+      item.setAttribute('data-key',key)
+      item.appendChild(checkbox)
+      item.appendChild(text)
+      item.appendChild(button)
+      todoList.appendChild(item)
+
+      checkbox.type = 'checkbox'
+      checkbox.addEventListener('change', (event) => {
+        //체크시 줄 표시
+        item.style.textDecoration = event.target.checked ? 'line-through' : ''
+      })
+
+      // 작성한 문자 넣기
+      text.textContent = input.value
+
+      //제거버튼
+      button.textContent = '제거하기'
+      button.addEventListener('click', () =>{
+        removeTodo(key)//제거함수
+      })
+
+      input.value = ''
+
+    }
+
+    //제거하기
+    const removeTodo = (key) =>{
+      //문서 객체 선택
+      const item = document.querySelector(`[data-key="${key}"]`)
+      todoList.removeChild(item)//제거기능
+    }
+
+    //이벤트 연결
+    addButton.addEventListener('click',addTodo)
+    input.addEventListener('keyup',(event) => {
+      const ENTER = 13
+      if(event.keyCode === ENTER) addTodo()
+    })
+  })
+</script>
+</html>

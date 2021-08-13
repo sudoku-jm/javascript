@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8-2-1</title>
+</head>
+<body>
+</body>
+<script>
+  try{
+    const array = new Array(999999999999999)
+  }catch(exception){
+    console.log(exception)
+    console.log()
+    console.log(`예외 이름 : ${exception.name}`)
+    console.log(`예외 메시지 : ${exception.message}`)
+  }
+
+  /* 결과
+  RangeError: Invalid array length
+    at 8-2-1.html:50
+  8-2-1.html:54 예외 이름 : RangeError
+  8-2-1.html:55 예외 메시지 : Invalid array length
+  */
+</script>
+</html>

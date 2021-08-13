@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>7-2-5</title>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const input = document.querySelector('input')
+      const p = document.querySelector('p')
+
+      //이메일 형식 체크 true false 반환
+      const isEmail = (value) => { 
+       
+        // console.log(value.indexOf('@'))
+        // console.log(value.split('@')[1].indexOf('.'))
+        //value.split('@')[1] : @ 로 자른 이후 문자열부터~
+        //.indexOf('.')  : . 이 나오는 인덱스번째
+        return (value.indexOf('@') > 1) && (value.split('@')[1].indexOf('.') > 1)
+      }
+      
+      input.addEventListener('keyup',(event) => {
+        /* 
+        currentTarget : 이벤트 리스너가 달린 요소
+        target : 실제 이벤트가 발생하는 요소
+        */
+       // const value = event.target.value
+        const value = event.currentTarget.value
+
+        if(isEmail(value)){ //true
+          p.style.color = 'green'
+          p.textContent = `이메일 형식입니다 : ${value}`
+        }else{  // false
+          p.style.color = 'red'
+          p.textContent = `이메일 형식이 아닙니다 : ${value}`
+        }
+
+      })
+
+    })
+  </script>
+</head>
+<body>
+  <input type="text">
+  <p></p>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script>
+    /* 
+    
+    문서객체.textContent : 입력된 문자열을 그대로 넣음
+    문서객체.innerHTML : 입력된 문자열을 HTML 형식으로 넣음
+
+    */
+    document.addEventListener('DOMContentLoaded', () =>{
+      const a = document.querySelector('#a')
+      const b = document.querySelector('#b')
+
+      a.textContent = '<h1>textContent 속성</h1>' //<h1>textContent 속성</h1>
+      b.innerHTML = '<h1>innerHTML 속성</h1>'     //innerHTML 속성
+    })
+
+
+  </script>
+</head>
+<body>
+  <div id="a"></div>
+  <div id="b"></div>
+</body>
+</html>

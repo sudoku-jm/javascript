@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>7-2-s1</title>
+</head>
+<body>
+  <h1>할 일 목록</h1>
+  <input id="todo">
+  <button id="add-button">추가하기</button>
+  <button id="reset-button">데이터 초기화</button>
+  <div id="todo-list"></div>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //문서 객체 가져오기
+    const input = document.querySelector('#todo')
+    const todoList = document.querySelector('#todo-list')
+    const addButton = document.querySelector('#add-button')
+    const resetButton = document.querySelector('#reset-button')
+
+    //TodoList 배열
+    let list = localStorage.list
+    let checkedList = localStorage.checkedList
+    let itemList = list == undefined ? new Array() : list.split(',')
+    let checkList = checkedList == undefined ? new Array() : checkedList.split(',')
+
+    let keyCount = localStorage.count != undefined ? localStorage.count : 0
+    console.log('keyCount : ' + keyCount)
+    console.log('list : ' + localStorage.list)
+    console.log('itemList : ' + itemList)
+    console.log('itemList.length : ' + itemList.length)
+    console.log('checkList :' + checkList)
+    console.log('checkList.length : ' + checkList.length)
+
+
+
+    //목록 가져오기
+    const getList = () => {
+      for(let index = 0; index < itemList.length; index++){
+        // 문서 객체 설정
+        const item = document.createElement('div')
+        const checkbox = document.createElement('input')
+        const text = document.createElement('span')
+        const button = document.createElement('button')
+
+        checkbox.type = 'checkbox'
+        button.textContent = '제거하기'
+        text.textContent = itemList[index]
+
+        item.setAttribute('data-key',index)
+        item.appendChild(checkbox)
+        item.appendChild(text)
+        item.appendChild(button)
+        todoList.appendChild(item)
+
+        checkbox.type = 'checkbox'
+        checkbox.addEventListener('change',(event) =>{
+          item.style.textDecoration = event.target.checked? 'line-through' : ''
+
+          if(event.target.checked){
+            checkList[index] = 1
+          }else{
+            checkList[index] = 0
+          }
+          localStorage.checkedList = checkList
+      })
+
+
+        button.textContent = '제거하기'
+        button.addEventListener('click', () =>{
+          removeTodo(index)
+        })
+
+      }
+    }
+
+    //목록 체크
+    const checked = () => {
+      for(let index = 0; index<checkList.length; index++){
+        let key = checkList[index]
+
+        if(key == 1){
+          const item = document.querySelector(`[data-key="${index}"]`)
+          const checkbox = document.querySelector(`[data-key="${index}"] input`)
+          item.style.textDecoration = 'line-through'
+          checkbox.checked = checked
+        }
+      }
+    }
+
+    getList()
+
+    checked()
+
+    const addTodo = () => {
+
+      if(input.value.trim() === ''){
+        alert('할 일을 입력해주세요.')
+        return
+      }
+  
+
+      const item = document.createElement('div')
+      const checkbox = document.createElement('input')
+      const text = document.createElement('span')
+      const button = document.createElement('button')
+
+      const key = keyCount
+      keyCount = Number(keyCount) + 1
+
+      item.setAttribute('data-key',key)
+      item.appendChild(checkbox)
+      item.appendChild(text)
+      item.appendChild(button)
+      todoList.appendChild(item)
+
+
+      checkbox.type = 'checkbox'
+      checkbox.addEventListener('change',(event) =>{
+        item.style.textDecoration = event.target.checked? 'line-through' : ''
+
+        if(event.target.checked){
+          checkList[key] = 1
+        }else{
+          checkList[key] = 0
+        }
+        localStorage.checkedList = checkList
+      })
+
+      text.textContent = input.value
+      
+      
+      //localStorage에 추가
+      button.textContent = '제거하기'
+      button.addEventListener('click', () => {
+        removeTodo(key)
+      })
+      checkList.push(0)
+      localStorage.checkedList = checkList
+      itemList.push(input.value)
+      localStorage.count = keyCount
+      localStorage.list = itemList
+
+      input.value = ''
+      
+    }
+
+    const removeTodo = (key) => {
+      const item = document.querySelector(`[data-key="${key}"]`)
+      keyCount--
+      localStorage.count = keyCount
+      itemList.splice(key,1)
+      if( keyCount == 0){
+        localStorage.clear()
+      }else{
+        localStorage.list = itemList
+      }
+
+      checkList.splice(key,1)
+      localStorage.checkedList = checkList
+      
+      todoList.removeChild(item)
+      location.reload()
+
+    }
+
+    //이벤트 연결
+    addButton.addEventListener('click',addTodo)
+    input.addEventListener('keyup',(event) => {
+      const ENTER = 13
+      if(event.keyCode === ENTER){
+        addTodo()
+      }
+    })
+
+    // 데이터 초기화
+    resetButton.addEventListener('click',(event) => {
+      localStorage.count = 0
+      localStorage.clear()
+      location.reload()
+    })
+
+  })
+</script>
+</html>

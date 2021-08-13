@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script>
+    /* 
+    
+    문서객체.setAttribute(속성이름, 값) : 특정 속성에 값을 지정.
+    문서객체.getAttribute(속성이름) : 특정 속성을 추출.
+
+    */
+    document.addEventListener('DOMContentLoaded',()=>{
+      const rects = document.querySelectorAll('.rect')
+      console.log(rects)
+      
+      rects.forEach( (rect, index) =>{
+        const width = (index + 1) * 100
+        console.log(width) //100,200,300,400
+        const src = `http://placekitten.com/${width}/250`
+        
+        console.log(rect)
+        rect.setAttribute('src',src)
+      })
+    })
+  </script>
+</head>
+<body>
+  <img class="rect">
+  <img class="rect">
+  <img class="rect">
+  <img class="rect">
+</body>
+</html>

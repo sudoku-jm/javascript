@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOMContentLoaded</title>
+</head>
+<body>
+  <script>
+    /* 
+      DOMContentLoaded 이벤트는?
+      웹브라우저가 문서 객체를 모두 읽고 나서 실행하는 이벤트.
+      DOMContentLoaded상태가 되었을 때 콜백 함수를 호출합니다.
+    
+    */
+    document.addEventListener('DOMContentLoaded',()=>{
+      const h1 = (text) => `<h1>${text}</h1>`
+      
+      document.body.innerHTML += h1('DOMContentLoaded 이벤트 발생')
+    })
+
+    /* 
+    DOMContentLoaded는 HTML5부터 추가된 이벤트.
+
+    구버전에선?
+    */
+
+    document.onload = function(){
+      document.innerHTML += 'load 이벤트 발생'
+    }
+
+    document.addEventListener('load',function(){
+      document.innerHTML += 'load 이벤트 발생'
+    })
+  </script>
+</body>
+</html>

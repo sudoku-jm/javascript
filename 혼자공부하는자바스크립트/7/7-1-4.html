@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script>
+    /* 
+      querySelectorAll() 메소드는 문서 객체를 여러개 추출.
+
+      querySelectorAll() 내부 요소에 접근하고 활용하려면 반복을 돌려야한다.
+      일반적으로 forEach()메소드를 사용해서 반복을 돌린다.
+    */
+
+    document.addEventListener('DOMContentLoaded',() =>{
+      const headers = document.querySelectorAll('h1')
+
+      headers.forEach((header) => {
+        header.textContent = 'HEADERS'
+        header.style.color = 'white'
+        header.style.backgroundColor = 'black'
+        header.style.padding = '10px'
+      })
+    })
+
+
+  </script>
+</head>
+<body>
+  <h1></h1>
+  <h1></h1>
+  <h1></h1>
+  <h1></h1>
+</body>
+</html>

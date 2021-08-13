@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8-2-3</title>
+</head>
+<body>
+</body>
+<script>
+ test = (object) => {
+   //실제 존재하지 않는 값을 가지고 계산하지만 오류가 발생하지 않고있다.
+   console.log(object.a + object.b) // undefined + undefined  = NaN
+ }
+
+ test({})
+</script>
+</html>
