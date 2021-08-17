@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-2-10</title>
+  <script>
+    /* 
+      getter , setter
+
+    - getter 
+      : private 속성 값을 가져오는 메소드 
+    - setter
+      : private 속성 값을 지정하는 메소드
+
+    */
+
+    class Square{
+      #length
+
+      constructor(length){
+        this.length = length
+      }
+
+      get length () {
+        return this.#length
+      }
+
+      get peimeter () {
+        return this.#length * 4
+      }
+
+      get area () {
+        return this.#length * this.#length
+      }
+
+      set length (length) {
+        if(length <= 0){
+          throw '길이는 0보다 커야 합니다.'
+        }
+        this.#length = length
+      }
+      
+
+    }
+
+    const squareA = new Square(10)
+    console.log(`한 변의 길이 : ${squareA.length}`)
+    console.log(`둘레 : ${squareA.peimeter}`)
+    console.log(`넓이 : ${squareA.area}`)
+
+    //예외 발생
+    const sqareB = new Square(-10)
+    
+
+    /* 
+      결과
+      한 변의 길이 : 10
+      둘레 : 40
+      넓이 : 100
+
+      
+      Uncaught 길이는 0보다 커야 합니다.
+    */
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

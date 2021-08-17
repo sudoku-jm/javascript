@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-2-6</title>
+  <script>
+
+    /* 
+      private
+      -클래스 내부에서만 접근하도록 지정하는 문법
+      - 목적 : 의도하지 않은 속성 사용 방지, 캡슐화(encapsulation)
+      (캡슐화 : 변수에 직접 접근하지 못하게 하여 값을 변경시킬 수 없도록 함으로써, 데이터 보호)
+      - 기호 : #
+    */
+
+    class Square{
+      //private 속성
+      #length
+
+      //생성자
+      constructor(length){
+        if(length < 0){
+          throw '길이는 0보다 커야합니다.'
+        }
+        this.#length = length //클래스사용하면서 넣은(10)은 직접적으로 length속성에 접근 못하게하여 값을 변경한다.
+      }
+
+      //메소드
+      getPerimeter() { return 4 * this.#length}
+      getArea(){ return this.#length * this.#length}
+
+
+    }
+
+    //클래스 사용하기
+    const square = new Square(10)
+    console.log(`정사각형의 둘레 : ${square.getPerimeter()}`)
+    console.log(`정사각형의 넓이 : ${square.getArea()}`)
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
