@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10-1-5</title>
+  <!-- 리액트 사용준비 -->
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+  /*  현재 시간 출력 프로그램 */
+
+    class App extends React.Component{
+
+      //생성자
+      constructor (props) {
+        super(props)
+        this.state = {
+          time : new Date()
+        }
+      }
+      
+      // 출력
+      render(){
+        return <h1>{this.state.time.toLocaleTimeString()}</h1>
+        /* 
+        toLocaleTimeString()
+        현지화된 시간 형식의 일부 변형을 보여줍니다
+
+        toLocaleTimeString('en-US') 7:00:00 PM
+        toLocaleTimeString('ko-KR') 오후 12:00:00 
+        */
+      }
+
+      componentDidMount () {
+        //컴포넌트가 화면에 출력되었을 때
+        this.timerId = setInterval( () => {
+          this.setState({     //setState() 메소드 사용하여 현재 시간 변경
+            time : new Date()
+          })
+        },1000)
+      }
+
+      componentWillUnmount () {
+        //컴포넌트가 화면에서 제거될 때
+        clearInterval(this.timerId)
+      }
+    }
+
+    //출력
+    const container = document.getElementById('root')
+    ReactDOM.render(<App/>,container)
+  </script>
+</body>
+</html>

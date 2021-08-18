@@ -1,0 +1,119 @@
+
+1. 리액트 라이브러리
+-리액트 라이브러리는 단순한 자바스크립트가 아니라 리액트를 위해 개발된 자바스크립트 확장 문법을 사용.
+- 이러한 문법을 사용하려면 바벨(Babel)이라는 라이브러리를 추가로 읽어들이고  바벨을 적용할 부분을 지정해야한다.
+
+<script src="text/babel"></script>
+
+
+2. 루트 컴포넌트 출력
+- 컴포넌트(component) : 리액트에서 화면에 출력되는 요소.
+- 루트 컴포넌트(root component) : 가장 최상위에 배치하는 컴포넌트
+-컨테이너(container) : 컴포넌트를 출력하는 상자
+
+
+-컴포넌트 생성
+<컴포넌트이름></컴포넌트이름>
+
+-출력
+: ReactDOM.render() 메소드 사용
+
+ReactDOM.render(컴포넌트, 컨테이너)
+
+-JSX
+: 자바스크립트 내부에 HTML 코드를 사용
+: 바벨이 JSX 코드를 읽고 일반적인 자바스크립트 문법으로 변환 뒤 실행 시켜준다.
+(https://babeljs.io/repl)
+
+
+
+3. JSX 기본 문법
+- 태그 내부에 표현식을 삽입해서 출력
+- 표현식 출력 시 따옴표 사용하면 안된다.
+
+표현식 출력
+<태그>{표현식}</태그>
+<태그 속성={표현식} />
+
+
+4. 클래스 컴포넌트
+- 사용자가 직접 클래스 또는 함수를 이용해 컴포넌트를 만들 수 있다.
+- React.Component 클래스 상속받아야 컴포넌트로 동작할 수 있게 하는 속성과 메소드 받을 수 있다.
+- React.Component 클래스는 화면에 무언가 출력할 때 render()메소드 호출. 오버라이드해서 원하는 것 출력.
+
+- 클래스 컴포넌트 : 클래스로 만드는 컴포넌트
+- 함수 컴포넌트 : 함수로 만드는 컴포넌트
+
+클래스 컴포넌트 만들기
+class 컴포넌트이름 extends React.Component{
+  render(){
+    return <h1>출력할 것</h1>
+  }
+}
+
+
+5.컴포넌트의 기본적인 속성과 메소드
+-componentDidMount() ,componentWillUnmount() : 컴포넌트가 내부적으로 특정 상황에 호출하는 메서드. 라이프사이클 메소드. 
+
+
+class App extends React.Component{
+  constructor (props) {
+    super(props)  // 부모 생성자 호출
+    //생성자 코드
+  }
+
+  render () {
+    //출력할 것
+  }
+
+  componentDidMount () {
+    //컴포넌트가 화면에 출력될 때 호출
+  }
+
+  componentWillUnmount () {
+    //컴포넌트가 화면에서 제거될 때 호출
+  }
+}
+
+
+- state 속성
+: 출력할 값을 저장.
+: state 속성값 변경 시, 반드시 setState() 메소드 사용
+: 속성 값 변경 시 컴포넌트는 render() 메소드 호출해 화면에 변경 사항 출력
+
+//상태 선언(생성자 위치)
+this.state = {속성 : 값}
+
+//상태 변경(이외 위치)
+this.setState({ 변경할 속성 : 값 })
+
+
+
+6. 이벤트 연결
+1. 메소드 선언
+2. 메소드에 this를 바인드
+3. render() 메소드에서 출력하는 태그 이벤트 속성에 메소드 입력해서 이벤트 연결
+
+class App extends React.Component{
+
+  constructor (props) {
+    super(props)
+    //메소드에 this 바인딩 => 리액트 이벤트 연결시 반드시 사용!
+    this.메소드이름 = this.메소드이름.bind(this)
+  }
+
+  render () {
+    //이벤트 연결
+    return <h1 이벤트이름={this.메소드이름}></h1>
+  }
+
+  // 메소드 선언
+  메소드이름 (event) {
+    //이벤트 호출될 때 실행 코드
+  }
+}
+
+
+
+
+
