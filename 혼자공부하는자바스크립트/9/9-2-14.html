@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-2-14</title>
+  <script>
+    class LifeCycle{
+      call(){
+        this.a()
+        this.b()
+        this.c()
+      }
+
+      a() { console.log(`a()메소드 호출`)}
+      b() { console.log(`b()메소드 호출`)}
+      c() { console.log(`c()메소드 호출`)}
+    }
+
+    class Child extends LifeCycle{
+      a(){  //재정의된 자식a() 메소드 실행
+        super.a()     //부모 a() 메소드 호출
+        /* 
+        자식 클래스에서 부모 클래스의 메소드 호출 방법
+        : super.부모메소드()
+        */
+        console.log(`자식의 a()메소드 입니다`)  
+      }
+    }
+
+
+    new Child().call()
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

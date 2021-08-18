@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-2-13</title>
+  <script>
+    /* 
+    override
+    - 부모 클래스에 정의된 메소드를 자식 클래스에서 재정의.
+    - 자식 클래스에서 조금 다른 방법으로 확장해서 사용할 때.
+    */
+
+    class LifeCycle{
+      call(){
+        this.a()
+        this.b()
+        this.c()
+      }
+      a() { console.log(`a()메소드 호출`)}
+      b() { console.log(`b()메소드 호출`)}
+      c() { console.log(`c()메소드 호출`)}
+    }
+
+    //상속
+    class Child extends LifeCycle{
+      a(){  //override
+          console.log(`자식의 a()메소드입니다`)        
+      }
+    }
+    
+
+    //자식에서인스턴스 생성
+    new Child().call()
+
+    /* 
+    결과
+
+    자식의 a()메소드입니다
+    b()메소드 호출
+    c()메소드 호출
+    */
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

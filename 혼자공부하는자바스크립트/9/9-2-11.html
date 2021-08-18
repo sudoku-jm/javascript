@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-2-11</title>
+  <script>
+
+    /* 
+  static 속성과 메소드
+  : 인스턴스 생성하지 않고 사용할 수 있는 속성, 메소드
+  : 클래스 이름만으로 생성되지 않은 상태에서 접근 가능.
+
+  class 클래스이름{
+    static 속성 = 값
+
+    static 메소드 () {
+
+    }
+  }
+
+  사용방법
+  : 클래스이름.속성
+  : 클래스이름.메소드()
+    */
+    class Square{
+      #length
+
+      static #counter = 0
+      static get counter (){
+        return Square.#counter
+      }
+
+      constructor(length){
+        this.length = length
+        Square.#counter += 1
+      }
+
+      static perimeterOf(length) {
+        return length * 4
+      }
+
+      static areaOf(length) {
+        return length * length
+      }
+
+      get length(){return this.#length}
+      get perimeter(){return this.#length * 4}
+      get area(){return this.#length * this.#length}
+
+      set length(length){
+        if(length < 0){
+          throw '길이는 0보다 커야합니다.'
+        }
+        this.#length = length
+      }
+    }
+
+
+    //static 속성 사용
+    const squareA = new Square(10)
+    const squareB = new Square(20)
+    const squareC = new Square(30)
+
+    console.log(`지금까지 생성된 Square인스턴스는 ${Square.counter}개 입니다.`)
+
+    //static메소드 사용
+    console.log(`한 변의 길이가 20인 정사각형의 둘레는 ${Square.perimeterOf(20)}입니다.`)
+
+    console.log(`한 변의 길이가 30인 정사각형의 넓이는 ${Square.areaOf(30)}입니다.`)
+
+
+    // console.log(`${squareC.perimeter}`)
+    // console.log(`${squareC.area}`)
+
+    /* 
+    
+      결과
+
+      지금까지 생성된 Square인스턴스는 3개 입니다.
+      한 변의 길이가 20인 정사각형의 둘레는 80입니다.
+      한 변의 길이가 30인 정사각형의 넓이는 900입니다.
+
+    */
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

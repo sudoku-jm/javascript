@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9-2-3</title>
+  <script>
+    /* 
+      상속
+      class 클래스이름 extends 부모클래스이름 {...}
+    */
+
+    class Rectangle{
+      constructor (width, height){
+        this.width = width
+        this.height = height
+      }
+
+      getPerimeter () {
+        return 2 * (this.width + this.height)
+      }
+
+      getArea () {
+        return this.width * this.height
+      }
+    }
+
+
+    //상속
+    class Square extends Rectangle {
+      constructor(length){
+        super(length,length)
+
+        /* 
+        super(arguments) // 부모 생성자 호출
+        super 키워드는 부모 객체의 함수를 호출하는데 사용될 수 있습니다.
+        super 키워드는 부모 오브젝트의 함수를 호출할 때 사용됩니다.
+       
+
+        파생(상속) 클래스에서 super() 함수가 먼저 호출되어야
+        'this' 키워드를 사용할 수 있습니다. 그렇지 않을 경우 참조오류가 발생합니다.
+        */
+      }
+    }
+
+    const square = new Square(10,20)
+
+    console.log(`정사각형 둘레 : ${square.getPerimeter()}`)
+    console.log(`정사각형 넓이 : ${square.getArea()}`)
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
