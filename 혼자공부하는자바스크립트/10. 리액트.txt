@@ -53,7 +53,7 @@ class 컴포넌트이름 extends React.Component{
 
 
 5.컴포넌트의 기본적인 속성과 메소드
--componentDidMount() ,componentWillUnmount() : 컴포넌트가 내부적으로 특정 상황에 호출하는 메서드. 라이프사이클 메소드. 
+-componentDidMount() ,componentWillUnmount() : 컴포넌트가 내부적으로 특정 상황에 호출하는 메서드. 라이프사이클(생명주기) 메소드. 
 
 
 class App extends React.Component{
