@@ -115,5 +115,14 @@ class App extends React.Component{
 
 
 
+7. 스타일지정
+render(){
+
+  const style = {}
+  return <h1 style={style}>글자</h1>
+}
+
+
+
 
 
