@@ -21,13 +21,16 @@
       constructor (props) {
         super(props)
         this.state = {
-          time : new Date()
+          time : new Date()     
+          //속성 : 값 형태로 선언.
+          // time 이라는 속성 선언.
         }
       }
       
       // 출력
       render(){
         return <h1>{this.state.time.toLocaleTimeString()}</h1>
+
         /* 
         toLocaleTimeString()
         현지화된 시간 형식의 일부 변형을 보여줍니다
@@ -38,17 +41,19 @@
       }
 
       componentDidMount () {
-        //컴포넌트가 화면에 출력되었을 때
-        this.timerId = setInterval( () => {
-          this.setState({     //setState() 메소드 사용하여 현재 시간 변경
+        //componentDidMount : 컴포넌트가 화면에 출력되었을 때 실행되는 생명주기 메소드
+        this.timerId = setInterval( () => { //타이머 함수
+          this.setState({     
+            //setState() 메소드 사용하여 현재 시간 변경
+            //setState()({ 속성 : 값})
             time : new Date()
           })
         },1000)
       }
 
       componentWillUnmount () {
-        //컴포넌트가 화면에서 제거될 때
-        clearInterval(this.timerId)
+        //componentWillUnmount : 컴포넌트가 화면에서 제거될 때 실행되는 생명주기 메소드
+        clearInterval(this.timerId)   //타이머 해제
       }
     }
 
