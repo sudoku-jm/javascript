@@ -103,9 +103,74 @@ componentDidMount()
 -constructor(props)
 : React 컴포넌트 실행 시 , 가장 먼저 호출되는 메소드
 : 목적 - 이벤트 처리 메소드 바인딩, state 초기화
-: 첫 문장 super(props)를 호출해야 한다.
+: 첫 문장 super(props)를 호출해야 한다. >> class컴포넌트 상속할 때. 리액트 사용 시 불러줘야함.
 : props를 매개변수로 사용해서 정의해야 한다.
 
+-getDerivedStateFromProps()
+: render()메소드 직전에 호출되는 메소드
+: props의 변경에 따른 state의 재설정
+: 드물게 사용
+
+-render()
+: 필수 메소드
+: HTML을 DOM에 출력하는 메소드
+: return 키워드 다음에 React앨리먼드, 배열, Fragment, Portal, 문자열과 숫자, Boolean, null
+
+-componentDidMount()
+: 컴포넌트가 마운트된 직후 호출되는 메소드
+:DOM컴포넌트를 미리 배치하기 위해 사용
+: 데이터 요청을 하기에 적합한 위치
+
+
+<라이프 사이클 주기 - Updating>
+getDerivedStateFromProps()
+▼
+shouldComponentUpdate()
+▼
+render()
+▼
+getSnapshotBeforeUpdate()
+▼
+componentDidUpdate()
+
+
+-getDerivedStateFromProps()
+: 컴포넌트 변경 시, 가장 먼저 호출되는 메소드
+: props의 변경에 따른 state의 재설정
+
+-shouldComponentUpdate(nextProps,nextState)
+: 컴포넌트 변경 시, 렌더링 여부를 결정하는 메소드
+: 렌더링 방지 목적으로의 사용은 권장하지 않음 → 버그 가능성
+: 성능 최적화를 위해 사용
+: 기본값 true를 리턴(기본적으로 렌더링이 되도록 함)
+
+this.props와 nextProps, this.state와 nextState의 비교하여,
+변경된 것이 없다면 false를 반환하여 갱신작업을 건너뛰게 할 수 있다.
+
+-render()
+: 필수 메소드 == Mounting 주기와 동일
+
+-getSnapshotBeforeUpdate(prevProps,prevState)
+: 렌더링된 결과가 DOM에 반영되었을 때 실행되는 메소드
+: 변경 이전의 props와 state확인 가능
+: componentDidUpdate()도 함께 정의해야 한다.
+: return 값을 componentDidUpdate()의 인자로 전달
+getSnapshotBeforeUpdate(prevProps,prevState){
+    return 결과값전달.                                  // 인자 값 전달
+}
+componentDidUpdate(prevProps,prevState,snapshot){       // 3번째 인자로 전달됨
+    ...
+}
+
+-componentDidUpdate(prevProps,prevState,snapshot)
+: 컴포넌트가 변경된 후 호출되는 메소드
+: 컴포넌트 변경 시, DOM조작을 위해 사용
+componentDidUpdate(prevProps){
+    if( prevProps.value !== this.props.value ){
+            //변경 시 , 작업요청
+            // TODO
+    }
+}
 
 
 
@@ -115,4 +180,15 @@ componentDidMount()
 2.state가 바뀔 때
 3.부모 컴포넌트가 리렌더링 될 때
 4.this.forceUpdate로 강제로 렌더링을 트리거할 때
+
+
+
+
+<라이플 사이클 주기 - Unmounting>
+componentWillUnmount()
+: 컴포넌트가 제거되기 직전에 호출되는 메소드
+: 타이머 제거, 네트워크 요청 취소, 구독 해제 등의 작업에 사용
+: 마운트가 해제되면, 다시 마운트 되지 않는다.
+
+
 
