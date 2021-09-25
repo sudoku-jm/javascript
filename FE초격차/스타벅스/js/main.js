@@ -19,6 +19,8 @@ searchInputEl.addEventListener('blur',function(){
 
 /* badge scroll event */
 const badgeEl = document.querySelector('header .badges');
+/* to top */
+const toTopEl = document.querySelector('#to-top');
 
 // window.addEventListener('scroll',function(){
 //     console.log('scroll!!');
@@ -46,6 +48,10 @@ window.addEventListener('scroll', _.throttle(function(){
             opacity : 0 ,        // 0.6초마다 점점 투명해짐
             display : 'none'
         });
+        //to top 버튼 보이기!
+        gsap.to(toTopEl, .2, {
+            x : 0
+        });
     }else{
         //500이하인 경우?
         //배지 보이기
@@ -55,9 +61,20 @@ window.addEventListener('scroll', _.throttle(function(){
             opacity : 1 ,       // 0.6초마다 점점 보임
             display : 'block'
         });
+        //to top 버튼 숨기기!
+        gsap.to(toTopEl, .2, {
+            x : 100 
+        });
     }
 },300)); 
 
+
+
+toTopEl.addEventListener('click',function(){
+    gsap.to(window, .7, {
+        scrollTo : 0        //gsap scroll 플러그인 사용.
+    });
+});
 
 
 /* VISUAL */
@@ -100,6 +117,18 @@ new Swiper('.promotion .swiper-container', {
     }
 });
 
+/* AWARDS */
+new Swiper('.awards .swiper-container', {
+    direction : 'horizontal',
+    autoplay : true,
+    loop : true,
+    spaceBetween : 30,
+    slidesPerView : 5,
+    navigation : {
+        prevEl : '.awards .swiper-prev',
+        nextEl : '.awards .swiper-next'
+    }
+});
 
 const promotionEl = document.querySelector('.promotion');
 const promotionToggleBtn = document.querySelector('.toggle-promotion');
@@ -147,10 +176,21 @@ floatingObject('.floating3', 1.5 , 20);
 
 
 
+/* scroll Magic */
+const spyEls = document.querySelectorAll('section.scroll-spy');
+
+spyEls.forEach(function(spyEl){
+    new ScrollMagic
+        .Scene({                           // 감시할 장면(Scene)을 추가
+            triggerElement : spyEl,      //트리거엘리먼트 보여짐 여부를 감시할 요소 지정
+            triggerHook : .8            // 화면의 80% 지점에서 보여짐 여부 감시
+        })
+        .setClassToggle(spyEl, 'show')   //토글할 요소, 토글할 클래스 이름 . 요소가 화면에 보이면 show 클래스 추가
+        .addTo(new ScrollMagic.Controller());      // 컨트롤러에 장면을 할당(필수!)
+});
 
 
+/* footer */
 
-
-
-
-
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear();       //2021
