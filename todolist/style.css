@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+*{margin:0;padding:0;font-family: 'Nanum Myeongjo', serif;font-size:15px;}
+ul,li{list-style: none;}
+input[type="text"],select{padding:10px;box-sizing: border-box;}
+input[type="text"]{height:40px;border:1px solid #eee;}
+
+.toDolistWrp{margin:0 auto;padding:20px 0;width:50%;}
+.toDolistWrp h1{display:block;padding:5px 0 20px 0;font-size:2.2em;font-weight:400;text-align:center;}
+.toDolistWrp input[type="text"]{width:100%;border:0;border-bottom:1px solid #ccc;}
+.toDolistWrp li{position: relative; padding:12px 0 12px 20px;border-bottom:1px dashed #ddd;}
+.toDolistWrp li:before{display: block;content:"";position: absolute;top:50%;left:5px;transform: translateY(-50%);width:4px;height:4px;background: #888;}
+.toDolistWrp li input[type="checkbox"]{display: block;float:left; margin:0 5px 0 0;width:15px;height:15px;vertical-align: middle;}
+.toDolistWrp li span{display: block;vertical-align: middle;cursor: pointer;}
