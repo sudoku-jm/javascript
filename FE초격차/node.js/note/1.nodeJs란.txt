@@ -1,0 +1,6 @@
+<개요>
+Node.js는 Chrome V8 JavaScript엔진으로 빌드된 JavaScript 런타임!
+JavaScript가 동작할 수 있는 환경.
+
+1. node.js설치 된 컴퓨터
+2. 브라우저(Chrome과 같은)
