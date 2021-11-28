@@ -1,0 +1,24 @@
+
+1. nvm 설치 : https://github.com/coreybutler/nvm-windows
+
+nvm --version
+nvm ls (설치된 node.js확인)
+nvm install 16.13.0 (원하는 버전 설치)
+
+nvm ls
+16.13.0
+* 14.18.0 (Currently using 64-bit executable)
+
+nvm use 16.13.0 (원하는 버전 실행)
+node --version (설치한 버전 확인)
+
+nvm uninstall 17.1.0 (원하는 버전 삭제)
+
+2. Node.js : https://nodejs.org/ko/
+
+3. npm 
+NPM(Node Package Mnager)는 전 세계의 개발자들이 만든 다양한 기능(패키지, 모듈) 들을 관리.
+node.js 환경에서 사용 할 수 있는 다양한 기능 패키지!
+
+
+
