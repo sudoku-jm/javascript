@@ -1,0 +1,45 @@
+1. 정규표현식, 이렇게 시작하자!
+https://heropy.blog/2018/10/28/regexp/
+
+
+
+정규표현식 테스트 사이트
+
+https://regex101.com/
+https://regexr.com/
+https://regexper.com/
+
+
+정규표현식은 자바스크립트에서만 작동하는게 아니다.
+But, JS에서는 되는데 다른 언어에서는 안되는 경우도 있다.
+
+테스트 잘 할것!
+
+
+---
+
+자바스크립트 정규식 생성
+
+1.생성자 함수 방식
+RegExp 생성자 함수를 호출하여 사용할 수 있습니다.
+
+const regexp1 = new RegExp("^abc");
+// new RegExg(표현식)
+
+const regexp2 = new RegExp("^abc", "gi");
+// new RegExg(표현식, 플래그)
+
+
+
+
+2.리터럴(Literal)방식
+정규표현식은 /로 감싸진 패턴을 리터럴로 사용합니다.
+
+const regexp1 = /^abc/;
+// /표현식/
+
+const regexp2 = /^abc/gi;
+// /표현식/플래그
+
+보통의 경우에는 리터럴 방식이 훨씬 편리합니다.
+하지만 상황에 따라 RegExg 생성자 함수를 써야만 하는 경우도 있습니다.

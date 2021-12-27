@@ -1,0 +1,12 @@
+// {
+//     "string" : "HEROPY",
+//     "number" : 123,
+//     "boolean" : true,
+//     "null" : null,
+//     "object" : {},
+//     "array" : []
+// }
+
+/* JSON파일은 문자데이터다. */
+
+{"name":"HEROPY","age":60,"emails":["thesecon@gmail.com","neo@zillins.com"]}
