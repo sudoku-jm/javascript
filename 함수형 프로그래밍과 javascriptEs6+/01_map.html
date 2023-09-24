@@ -1,0 +1,136 @@
+<script>const log = console.log</script>
+<!-- Array, Set, Map을 통해 알아보는 이터러블/이터레이터 프로토콜 -->
+
+<script>
+    //예시 데이터
+    const products = [
+        {name: '반팔티', price: 15000},
+        {name: '긴팔티', price: 20000},
+        {name: '핸드폰케이스', price: 15000},
+        {name: '후드티', price: 30000},
+        {name: '바지', price: 25000}
+    ];
+</script>
+
+<script>
+    /*
+        고차 함수
+        - 함수를 인자로 전달받거나 함수를 결과로 반환 하는 함수.
+    */
+
+   //예전 방식
+   let names = [];
+    for (const p of products) {
+    names.push(p.name);
+    }
+    log(names); // ['반팔티', '긴팔티', '핸드폰케이스', '후드티', '바지']
+
+    let prices = [];
+    for (const p of products) {
+    prices.push(p.price);
+    }
+    log(prices); //[15000, 20000, 15000, 30000, 25000]
+
+    console.clear();
+
+    //map이라는 함수를 만들어 사용
+    const map = (f, iter) => {
+    let res = [];
+    for (const a of iter) {
+        res.push(f(a)); 
+    }
+    return res;
+    };
+
+    log(map(p => p.name, products)); //['반팔티', '긴팔티', '핸드폰케이스', '후드티', '바지']
+    log(map(p => p.price, products)); //[15000, 20000, 15000, 30000, 25000]
+    console.clear();
+
+    const map2 = (f,iter) => {
+        let res = [];
+        log(f) // p => p.name
+
+        for( const a of iter){ // for - of로 products를 순환. 
+            log(a); //products의 각 객체 출력
+            log(f(a))
+
+            res.push(f(a));
+            /*
+                여기서 함수 f가 인자 a를 받아서 p라는 변수를 사요하고, 이 함수는 p.name을 반환 한다. 
+                아래와 같은 함수를 사용한것과 비슷한 원리라고 생각하자.
+                p => p.name과 같이 어떤 값을 뽑아서 사용하겠다는 보조 함수로 사용한 것이다.
+                f(a){
+                    const p = a;
+                    return p.name 
+                }
+            */
+        }
+
+        return res;
+    }
+
+    log(map2(p => p.name, products));
+
+    console.clear();
+</script>
+
+
+<script>
+    //이터러블 프로토콜을 따른 map의 다형성1
+
+    log(document.querySelectorAll('*'))
+    // log(document.querySelectorAll('*').map((item) => item)) 사용불가.
+     
+    log([1, 2, 3].map(a => a + 1));
+
+    log(map(el => el, document.querySelectorAll('*')));
+    log(map(el => el.nodeName, document.querySelectorAll('*')));
+
+
+    const iter = document.querySelectorAll('*')[Symbol.iterator]();
+    log(iter)
+    log(iter.next())
+    log(iter.next())
+    log(iter.next())
+    log(iter.next())
+    log(iter.next())
+    log(iter.next())
+
+    function* gen() {
+        yield 2;
+        if (false) yield 3;
+        yield 4;
+    }
+
+    log(map(a => a * a, gen()));
+
+    console.clear();
+
+    let m = new Map();
+    m.set('a',10);
+    m.set('b',20);
+    // const it = m[Symbol.iterator]();
+    // log(it) //MapIterator {'a' => 10, 'b' => 20}
+    // log(it.next()) //{value: Array(2), done: false}
+    // log(it.next()) //{value: Array(2), done: false}
+    // log(it.next()) //{value: undefined, done: true}
+
+
+    
+    //키와 값을 구조분해해서 이렇게 사용가능.
+    // log(map(([k, a]) => [k, a * 2], m));
+    
+    log(map((i) => i, m)); 
+    //m의 역할은 두번 째 인자로 m을 전달. map(첫번째, 두번째)
+    //첫번째 인자는 콜백함수. 두번째 인자는 map객체.
+    
+    log(map(([k,a,c]) => [k,a,c], m));
+
+    // 새로운 map을 만들 수 있다.
+    
+    log(new Map(map(([k, a]) => [k, a * 2], m)));
+
+    console.clear();
+
+</script>
+

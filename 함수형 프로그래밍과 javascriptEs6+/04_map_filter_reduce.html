@@ -1,0 +1,117 @@
+<script>const log = console.log;</script>
+<!-- map,filter,reduce 중첩 사용과 함수형 사고 -->
+
+<script>
+//map , filter, reduce 함수 생성
+const map = (f, iter) => {
+  let res = [];
+  for (const a of iter) {
+    res.push(f(a));
+  }
+  return res;
+};
+
+const filter = (f, iter) => {
+  let res = [];
+  for (const a of iter) {
+    if (f(a)) res.push(a);
+  }
+  return res;
+};
+
+const reduce = (f, acc, iter) => {
+  if (!iter) {
+    iter = acc[Symbol.iterator]();
+    acc = iter.next().value;
+  }
+  for (const a of iter) {
+    acc = f(acc, a);
+  }
+  return acc;
+};
+
+</script>
+
+<script> 
+//응용해보기
+const products = [
+    {name: '반팔티', price: 15000},
+    {name: '긴팔티', price: 20000},
+    {name: '핸드폰케이스', price: 15000},
+    {name: '후드티', price: 30000},
+    {name: '바지', price: 25000}
+];
+
+
+
+//가격을 뽑아보자.
+log(map(p => p.price, products)) // Array(5) 
+
+//특정 금액 조건 상품만 뽑기
+log( map(p => p.price, filter(p => p.price < 20000 , products)) ); // Array(2)
+
+//특저 금액 조건의 상품을 뽑아, 해당 상품들의 가격을 다 합치기
+const add = (a, b) => a + b;
+
+//각 상품이 20000원 미만인 것을 뽑고 거기서 가격만 뽑아내어 중첩.
+log( 
+    reduce(add , 
+    map(p => p.price, 
+        filter(p => p.price < 20000 , products))) 
+); //30000
+//오른쪽에서 왼쪽으로 읽어나가면 보기 쉬움.
+
+
+//map을 먼저하고 filter를 걸어도 동일한 결과가 나온다.
+//전체 가격을 다 뽑고, 20000원 미만인 가격만 필터
+log(
+    reduce(add,
+        filter(n => n < 20000,
+        map(p => p.price, products)))
+) //3000
+
+
+//함수형 사고.
+log( 
+    reduce(
+        add , 
+        [10,20,30,40] //해당 자리에 숫자가 있는 배열로 들어갈 것이다는 생각을 해보자.
+    ) 
+); 
+
+log('====================')
+//함수형 사고.
+log( 
+    reduce(
+        add , 
+        map(p => p.price , products) // 결과가 숫자가 들어있을 것이라는 배열로 반환
+    )
+); 
+log( 
+    reduce(
+        add , 
+        map(p => p.price , 
+        [{name: '반팔티', price: 15000},
+        {name: '핸드폰케이스', price: 15000},] //특정조건의 배열이 들어오다고 생각해보기
+        ) 
+    )
+); 
+log( 
+    reduce(
+        add , 
+        map(p => p.price , 
+        [{name: '반팔티', price: 15000},
+        {name: '핸드폰케이스', price: 15000},]  //특정조건의 배열이 들어오다고 생각해보기
+        ) 
+    )
+); 
+log( 
+    reduce(
+        add , 
+        map(p => p.price , 
+        filter( n => n.price < 20000, products)
+        ) 
+    )
+); 
+
+</script>
