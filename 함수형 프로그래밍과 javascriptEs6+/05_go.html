@@ -1,0 +1,94 @@
+<script src="./lib/fx.js"></script>
+<!-- 코드를 값으로 다루어 표현력 높이기 --> 
+
+<script>
+      const products = [
+        {name: '반팔티', price: 15000},
+        {name: '긴팔티', price: 20000},
+        {name: '핸드폰케이스', price: 15000},
+        {name: '후드티', price: 30000},
+        {name: '바지', price: 25000}
+    ];
+
+</script>
+
+<script>
+
+  log(
+    '중첩 : ',
+    reduce(
+      add,
+      map(p => p.price,
+        filter(p => p.price < 20000, products))));
+
+  // 중첩이 되어 약간 읽기 어렵다.
+</script>
+
+<script>
+  // const go = (...arg) => {
+  //   log(arg) // [0, ƒ, ƒ, ƒ, ƒ]
+  // }
+
+  // go(
+  //   0,
+  //   a => a+1, //결과를 다음 인자로 전달
+  //   a => a+10, //결과를 다음 인자로 전달
+  //   a => a+100, //이것은 reduce같은것.
+  //   log
+  // )
+
+  //연속적으로 값이 중첩되어 원하는 값을 출력.
+  //이것은 reduce의 기능과도 같다.
+
+  const go = (...args) => reduce((a, f) => f(a) , args);
+
+  go(
+    0,
+    a => a+1, //결과를 다음 인자로 전달
+    a => a+10, //결과를 다음 인자로 전달
+    a => a+100, //이것은 reduce같은것.
+    log
+  ) // 결과 111
+
+  //go 함수는 즉시 어떤 값(결과)를 평가하는데 사용한다.
+
+
+  //pipe함수는 함수들이 나열되어있는 합성된 함수를 나타낸다.
+  // 내부에서 go를 사용하는 함수
+  const pipe = (...fs) => (a) => go(a, ...fs); //함수를 리터하는 함수.
+
+  const f = pipe( //f라는 하나의 함수로 만들어서 사용한다.
+    a => a+1,
+    a => a+10,
+    a => a+100
+  );
+
+  log('pipe : ' ,f(0)); // 결과 111
+
+  //pipe 함수 기능 추가====================
+  // add 함수를 사용한다치면
+  const add = (a, b) => a + b;
+
+
+  go(
+    add(0,1), //결과를 1로 만들어놓고 시작.
+    a => a+10, 
+    a => a+100, 
+    log
+  ) // 결과 111
+
+  // log(f(add(0,1)))// 여기서 이렇게 전달하기에는 좀 아쉬우니 f함수를 수정.
+
+  // const pipe2 = (h, ...fs) => (...as) => go(h(...as), ...fs);
+  // const pipe2 = (h, ...fs) => (...as) => {log(as)}
+  const pipe2 = (h, ...fs) => (...as) => go(h(...as), ...fs  )
+  //첫번째 함수만 꺼내고 뒤에 나머지 함수를 꺼낸다.
+
+  const f2 = pipe2(
+    (a,b) => a + b, //처음에 인자를 2개 받아서 사용할 수 있도록 구성
+    a => a + 10,
+    a => a + 100
+  );
+
+  log('f2 : ', f2(0,1));
+</script>
