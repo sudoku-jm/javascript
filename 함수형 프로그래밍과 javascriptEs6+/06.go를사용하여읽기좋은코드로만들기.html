@@ -1,0 +1,143 @@
+<script src="./lib/fx.js"></script>
+<!-- 코드를 값으로 다루어 표현력 높이기 --> 
+
+<script>
+      const products = [
+        {name: '반팔티', price: 15000},
+        {name: '긴팔티', price: 20000},
+        {name: '핸드폰케이스', price: 15000},
+        {name: '후드티', price: 30000},
+        {name: '바지', price: 25000}
+    ];
+
+
+    const go = (...args) => reduce((a, f) => f(a) , args);
+
+    const add = (a, b) => a + b;
+
+    const pipe = (f, ...fs) => (...as) => go(f(...as), ...fs);
+
+</script>
+
+
+<script>
+  //이전 함수 실행 -> 다음함수에 실행하는 go함수 표현 변경.
+  log(
+    reduce(
+      add,
+      map(p => p.price,
+        filter(p => p.price < 20000, products))));
+
+  go(
+    products,
+    products => filter(p => p.price < 20000, products),
+    products => map(p => p.price, products),
+    prices => reduce(add, prices),
+    log
+  );
+
+</script>
+
+<script>
+  //curry함수 사용 fx.js에 curry함수 있음.
+  const mult = curry((a, b) => a * b);
+  
+  log(mult); //결과 : (a, ..._) => _.length ? f(a, ..._) : (..._) => f(a, ..._);
+
+  log(mult(1)); //결과 : (..._) => f(a, ..._);
+
+  log(mult(3)(2)); // 결과 : 6
+
+  const mult3 = mult(3);
+  log(mult3(10))
+  log(mult3(5))
+  log(mult3(3))
+
+  console.clear();
+
+</script>
+
+<script>
+// products 필터 함수에 curry 적용
+
+// go(
+//     products,
+//     products => filter(p => p.price < 20000)(products),
+//     products => map(p => p.price)(products),
+//     prices => reduce(add)(rices),
+//     log
+//   );
+
+go(
+    products,
+    filter(p => p.price < 20000),
+    map(p => p.price),
+    reduce(add),
+    log
+  ); //결과 30000
+
+
+</script>
+
+<script> 
+//함수 조합으로 함수 만들기
+//pipe함수 사용.
+
+//예1
+// go(
+//   products,
+//   filter(p => p.price < 20000),
+//   map(p => p.price),
+//   reduce(add),
+//   log);
+
+// go(
+//   products,
+//   filter(p => p.price >= 20000),
+//   map(p => p.price),
+//   reduce(add),
+//   log);
+
+//예2
+// const total_price = pipe(
+//     map(p => p.price),
+//     reduce(add));
+
+
+// go(
+//   products,
+//   filter(p => p.price < 20000),
+//   total_price,
+//   log
+// )
+
+// go(
+//   products,
+//   filter(p => p.price >= 20000),
+//   total_price,
+//   log
+// )
+
+//예3
+const total_price = pipe(
+    map(p => p.price),
+    reduce(add));
+
+const base_total_price = pridi => {
+  filter(pridi),
+  total_price
+}
+
+
+go(
+  products,
+  base_total_price(p => p.price < 20000),
+  log
+)
+
+go(
+  products,
+  base_total_price(p => p.price >= 20000),
+  log
+)
+</script>

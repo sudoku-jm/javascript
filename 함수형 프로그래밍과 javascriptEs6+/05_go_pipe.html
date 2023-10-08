@@ -14,12 +14,15 @@
 
 <script>
 
-  log(
-    '중첩 : ',
-    reduce(
-      add,
-      map(p => p.price,
-        filter(p => p.price < 20000, products))));
+  //pipe 함수 기능 추가====================
+  // add 함수를 사용한다치면
+  // const add = (a, b) => a + b;
+  // log(
+  //   '중첩 : ',
+  //   reduce(
+  //     add,
+  //     map(p => p.price,
+  //       filter(p => p.price < 20000, products))));
 
   // 중첩이 되어 약간 읽기 어렵다.
 </script>
@@ -55,7 +58,7 @@
 
   //pipe함수는 함수들이 나열되어있는 합성된 함수를 나타낸다.
   // 내부에서 go를 사용하는 함수
-  const pipe = (...fs) => (a) => go(a, ...fs); //함수를 리터하는 함수.
+  const pipe = (...fs) => (a) => go(a, ...fs); //함수를 리턴하는 함수.
 
   const f = pipe( //f라는 하나의 함수로 만들어서 사용한다.
     a => a+1,
@@ -63,7 +66,7 @@
     a => a+100
   );
 
-  log('pipe : ' ,f(0)); // 결과 111
+  log('pipe : ' ,f(0)); // 결과 111 
 
   //pipe 함수 기능 추가====================
   // add 함수를 사용한다치면
@@ -74,6 +77,7 @@
     add(0,1), //결과를 1로 만들어놓고 시작.
     a => a+10, 
     a => a+100, 
+    log
     log
   ) // 결과 111
 
