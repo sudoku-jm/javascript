@@ -18,6 +18,153 @@
       {name: '바지', price: 25000, quantity: 5, is_selected: false}
     ];
 
+    const go = (...args) => reduce((a, f) => f(a) , args);
+
+    const pipe = (f, ...fs) => (...as) => go(f(...as), ...fs);
+
+  </script>
+
+  <script>
+
+    // 1. go를 활용해 총 수량을 단계적으로 뽑기
+
+    // go(
+    //   products,
+    //   map(p => p.quantity),
+    //   log
+    // ) // 결과 : [1, 2, 3, 4, 5]
+
+
+    // // 2.products를 통해 quantity 항목만 남긴곳에 총 수량만 뽑기
+    // go(
+    //   products,
+    //   map(p => p.quantity),
+    //   reduce((a,b) => a + b),
+    //   log
+    // )
+
+    // //3. total_quantity 함수에 사용
+    // const total_quantity = products => go(products,
+    // map(p => p.quantity),
+    // reduce((a, b) => a+b),
+    // log)
+
+    // log(total_quantity(products)) //결과 15
+
+    // //4. products를 받아 go의 products에 넣는 것을 의미하는 부분을 pipe로 대체.
+
+    // const total_quantity = pipe(
+    //   map(p => p.quantity),
+    //   reduce((a, b) => a+b),
+    // )
+
+    // log(total_quantity(products)) // 결과 15
+
+    // 5. 각 제품당 금액 * 수량 출력 (가격 출력)
+
+    // const add = (a,b) => a + b;
+    
+    // const total_quantity = pipe(
+    //   map(p => p.quantity),
+    //   reduce(add)
+    // )
+
+    // const total_price = pipe(
+    //   map(p => p.quantity * p.price),
+    //   reduce(add)
+    // )
+
+    // log(total_quantity(products)); // 15
+    // log(total_price(products)); // 345000
+
+    // 6. map에 전달하는 부분을 제외하고 동일한 코드이다. 이 부분은 추상화 시켜보기.
+
+    // const add = (a,b) => a + b;
+
+    // const sum = (f, iter) => go(
+    //   iter,
+    //   map(f),
+    //   reduce(add)
+    // );
+
+    //  log(sum(p => p.quantity,products)) //15
+    //  log(sum(p => p.quantity * p.price, products)) //15
+
+    
+    // 7.코드의 중복을 삭제하고, total_quantity, total_price의 함수를 정리해보자. 간결한 코드로 만들기
+
+    // const add = (a,b) => a + b;
+
+    // const sum = (f,iter) => go(
+    //   iter,
+    //   map(f),
+    //   reduce(add))
+
+    // // log(sum(p => p.quantity, products)) 
+    // // log(sum(p => p.quantity * p.price, products))
+
+    // //total_quantity의 함수 기능과 total_price의 함수 기능을 정리하자면 이런식으로 만들 수 있다.
+    // const total_quantity = products => sum(p => p.quantity, products);
+    // const total_price = products => sum(p => p.quantity * p.price, products);
+
+    // log('total_quantity',total_quantity(products))
+    // log('total_price',total_price(products))
+
+    // 8. 더 간결하게 만들기 = 커링기능 사용(curry함수)
+
+    
+    const add = (a,b) => a + b;
+
+    const sum = curry((f, iter) => go(
+      iter,
+      map(f),
+      reduce(add)));
+
+    //8-1.curry를 사용하면 이렇게 표현 가능.
+    // const total_quantity = products => sum(p => p.quantity)(products);
+    
+    //8-2.이는 또 이렇게도 사용가능.
+    /*
+      products를 받는 함수가 sum이 리턴하는 함수에 전달만 하고있기때문에 
+      products를 사용하고 있는 products => sum(p => p.quantity)(products) 이 자리는
+      sum(p => p.quantity)만 사용하는걸로 대체가능.
+      똑같이 동작한다.
+    */
+    const total_quantity = sum(p => p.quantity);
+    
+    //8-3. 마찬가지로 total_price도 curry를 사용하면 
+    // const total_price = products => sum(p => p.quantity * p.price, products);
+
+    //8-4. 이렇게 표현가능하며
+    // const total_price = products => sum(p => p.quantity * p.price)(products);
+
+    //8-5. sum(p => p.quantity * p.price)만 사용하는 걸로 대체가능하다.
+    const total_price = sum(p => p.quantity * p.price);
+
+    /*
+    curry를 사용하여 
+    sum(p => p.quantity) 해당 보조함수를 사용하겠다. 어디에서? sum의 map(f)에서.
+    훨씬 더 간결하게 표현가능하다.
+    */
+    log('total_quantity',total_quantity(products))
+    log('total_price',total_price(products))
+
+  
+    //sum(합산기능)은 products만을 위해서 사용하는 함수가 아니다. 다른 데이터의 응요에서도 사용가능하다. 
+    //iter에 [...]데이터가 들어오면 데이터의 u => u.age만을 뽑아 합산.
+    log(
+      sum(u => u.age, [
+        {age : 30},
+        {age : 20},
+        {age : 10},
+      ])
+    )
+    
+
+    //sum은 추상화 레벨이 높은 함수다.
+
+    log(sum(p => p.quantity)(products))
+      
   </script>
 </body>
 </html>
